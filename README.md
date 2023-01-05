@@ -1,2 +1,4 @@
 # Console-Games
-A simple Python library to make your own console games!
+Welcome to ConsoleGames, a simple Python module to make great console games!
+
+## How does it work?
