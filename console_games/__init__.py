@@ -9,6 +9,8 @@ if __name__ == "__main__":
 
     game = console_games.Game()
 
+    game.figure.animate_offset(x=7, y=4)
+
     game.figure.refresh()
 
     game.figure.animate(animations.FigureAnimations.run(), loops=2)

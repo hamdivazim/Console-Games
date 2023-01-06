@@ -3,7 +3,11 @@ import figure
 
 class Game:
     def __init__(self):
-        self.figure = figure.Figure(refresh_rate=30)
+        self.figure = figure.Figure(refresh_rate=30, current_sprite=R"""
+ O
+/|\
+ |
+/ \ """)
         self.refresh_rate = 30
     
     def refresh_rate(self, new_rate):
