@@ -13,6 +13,8 @@ class Object:
     def __init__(self, color=Fore.LIGHTBLACK_EX, refresh_rate=30, current_sprite=None):
         """ Initialiser """
 
+        colorama.init()
+
         if current_sprite == None:
             raise _exceptions.NoCurrentSpriteProvided()
         else:

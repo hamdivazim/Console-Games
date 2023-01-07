@@ -1,4 +1,5 @@
 import figure
+import fancy_text
 
 
 class Game:
@@ -13,3 +14,6 @@ class Game:
     def refresh_rate(self, new_rate):
         self.refresh_rate = new_rate
         self.figure.refresh_rate = new_rate
+
+    def write(self, data):
+        print(fancy_text.get_fancy_text(data))
