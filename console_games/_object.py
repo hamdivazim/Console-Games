@@ -9,6 +9,8 @@ from colorama import Fore
 
 import _exceptions
 
+import platform
+
 class Object:
     def __init__(self, color=Fore.LIGHTBLACK_EX, refresh_rate=30, current_sprite=None):
         """ Initialiser """
@@ -35,7 +37,10 @@ class Object:
     def refresh(self):
         """ Refreshes the screen. """
 
-        cmd("cls")
+        if platform.system() == "Windows":
+            cmd("cls")
+        else:
+            cmd("clear")
 
         sprite = "\n"*self.offsetY
 
