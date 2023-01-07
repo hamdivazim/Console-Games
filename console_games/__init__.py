@@ -25,4 +25,6 @@ if __name__ == "__main__":
 
     title = fancy_text.Text(text="Cool title!")
 
+    title.animate_offset(y=7)
+
     title.refresh()

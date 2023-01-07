@@ -12,7 +12,7 @@ import _exceptions
 import platform
 
 class Object:
-    def __init__(self, color=Fore.LIGHTBLACK_EX, refresh_rate=30, current_sprite=None):
+    def __init__(self, color=Fore.LIGHTBLACK_EX, refresh_rate=30, current_sprite=None, current_game=None):
         """ Initialiser """
 
         colorama.init()
@@ -21,6 +21,8 @@ class Object:
             raise _exceptions.NoCurrentSpriteProvided()
         else:
             self._default = current_sprite
+
+            self._scene = current_game
 
             self.current_sprite = self._default
             self.refresh_rate = refresh_rate
