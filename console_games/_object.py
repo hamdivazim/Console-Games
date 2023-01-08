@@ -9,8 +9,10 @@ from colorama import Fore
 
 import _exceptions
 
+import platform
+
 class Object:
-    def __init__(self, color=Fore.LIGHTBLACK_EX, refresh_rate=30, current_sprite=None):
+    def __init__(self, color=Fore.LIGHTBLACK_EX, refresh_rate=30, current_sprite=None, current_game=None):
         """ Initialiser """
 
         colorama.init()
@@ -19,6 +21,8 @@ class Object:
             raise _exceptions.NoCurrentSpriteProvided()
         else:
             self._default = current_sprite
+
+            self._scene = current_game
 
             self.current_sprite = self._default
             self.refresh_rate = refresh_rate
@@ -33,6 +37,22 @@ class Object:
         """ Changes the color of the object using colorama. """
 
         self.color = color
+
+    def refresh(self):
+        """ Refreshes the screen. """
+
+        if platform.system() == "Windows":
+            cmd("cls")
+        else:
+            cmd("clear")
+
+        sprite = "\n"*self.offsetY
+
+        for line in self.current_sprite.splitlines(True):
+            sprite += "  "*self.offsetX
+            sprite += line
+
+        print(f"{self.color}{sprite}")
 
     def reset(self):
         """ Resets the object. """

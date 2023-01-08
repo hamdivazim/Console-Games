@@ -5,3 +5,6 @@ class NoCurrentSpriteProvided(Exception):
 
 class NoCurrentTextProvided(Exception):
     pass
+
+class NoSceneProvided(Exception):
+    pass
