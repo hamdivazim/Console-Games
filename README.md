@@ -34,3 +34,7 @@ game.figure.animate_offset(x=3, y=3) # Animates the offset
 
 game.figure.color(Fore.BLUE) # Colors the object in the specified color using colorama
 ```
+
+## When can I use it?
+
+As of now, console_games is _very_ early into development. When it is the _very_ best I can make it, I will release it on PyPi :)
