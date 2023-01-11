@@ -3,31 +3,57 @@ Console Games
 """
 
 import games as console_games
+import os
 
-if __name__ == "__main__":
+def test():
+    """ You can run this if you want to test console_games. """
+
     import animations
     import fancy_text
+    import sound
+    import figure
 
     game = console_games.Game()
 
-    game.figure.animate_offset(x=7, y=7)
+    audio = sound.AudioPlayer()
 
-    game.refresh()
+    audio.play('test.mp3')
 
-    game.figure.animate(animations.FigureAnimations.run(), loops=2, loop_offset_x=1)
+    game.delay(2)
 
-    game.figure.reset()
-    game.refresh()
-
-    game.delay(1)
-
-    title = fancy_text.Text(text="Cool title!")
-    game.figure.offset(y=-6)
+    title = fancy_text.Text(text="Super Mario Bros.")
 
     game.add_to_children(title)
 
-    game.refresh()
+    title.offset(x=1, y=1)
+    title.toggle_multicolor()
+
+    game.delay(2)
+
+    figure_sprite = R"""
+ O
+/|\
+ |
+/ \ 
+    """
+
+    figure = figure.Figure(current_sprite=figure_sprite)
+
+    game.add_to_children(figure)
+
+    figure.offset(y=4)
+
+    figure.animate(animation=animations.FigureAnimations.run(), loop_offset_x=1)
+
+    figure.current_sprite = figure_sprite
 
     game.delay(1)
 
-    game.figure.animate(animations.FigureAnimations.run_left(), loops=2, loop_offset_x=-1)
+    figure.animate(animation=animations.FigureAnimations.wave(), loops=2)
+
+    figure.current_sprite = figure_sprite
+
+    game.delay(3)
+
+if __name__ == "__main__":
+    test()

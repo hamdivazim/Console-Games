@@ -19,4 +19,4 @@ class Text(Object):
     def change_text(self, new_text):
         self.text = new_text
         self.current_sprite = get_fancy_text(new_text)
-        self.refresh()
+        self.current_game.refresh()

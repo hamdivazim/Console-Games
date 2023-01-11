@@ -4,20 +4,22 @@ import fancy_text
 from os import system as cmd
 from time import sleep as wait
 
+import colorama
+from colorama import Fore
+
+import keyboard
+
+colorama.init()
+
 class Game:
     def __init__(self):
         global current_game
 
-        self.figure = figure.Figure(refresh_rate=30, current_sprite=R"""
- O
-/|\
- |
-/ \ """)
         self.refresh_rate = 30
 
         self.children = []
 
-        self.add_to_children(self.figure)
+        self._colors = [Fore.LIGHTRED_EX, Fore.YELLOW, Fore.LIGHTYELLOW_EX, Fore.GREEN, Fore.BLUE, Fore.MAGENTA]
     
     def refresh_rate(self, new_rate):
         self.refresh_rate = new_rate
@@ -48,7 +50,11 @@ class Game:
                 sprite += "  "*child.offsetX
                 sprite += line
 
-            print(f"{child.color}{sprite}")
+            if child.multicolor_enabled:
+                print(f"{self._colors[child._current_color % len(self._colors)]}{sprite}")
+                child._current_color += 1
+            else:
+                print(f"{child.color}{sprite}")
 
             offsetIndexY += 1
 
@@ -58,5 +64,9 @@ class Game:
         for i in range(self.refresh_rate*seconds):
             self.refresh()
             wait(1/self.refresh_rate)
+
+    def _remove(self, obj):
+        self.children.remove(obj)
+        self.refresh()
 
 current_game = Game()

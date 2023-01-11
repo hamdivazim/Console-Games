@@ -1,12 +1,20 @@
 """ Premade animations """
+import _exceptions
 
+# Custom Animation Class
+class CustomAnimation:
+    def __init__(self, aniList=None):
+        if aniList == None:
+            raise _exceptions.NoAnimationProvided()
+        else:
+            self.animation = aniList
 
 # Figure Animations
 
 class FigureAnimations:
     @staticmethod
     def wave():
-        return [
+        return CustomAnimation(aniList=[
 R"""
  O
 /|\
@@ -31,11 +39,11 @@ R"""
  |
 / \
     """,
-        ]
+        ])
 
     @staticmethod
     def run():
-        return [
+        return  CustomAnimation(aniList=[
 R"""
  O
  |<
@@ -122,11 +130,11 @@ R"""
  |
 / -
     """,
-        ]
+        ])
 
     @staticmethod
     def run_left():
-        return [
+        return  CustomAnimation(aniList=[
 R"""
  O
 >|
@@ -175,4 +183,33 @@ R"""
  |
 / \
     """,
-        ]
+        ])
+
+    @staticmethod
+    def jump():
+        return CustomAnimation(aniList=[
+R"""
+ O
+/|\
+ |
+/ \
+""",
+R"""
+ O
+-|-
+_|_
+ 
+""",
+R"""
+\O/
+ |
+\|/
+ 
+""",
+R"""
+ O
+-|-
+_|_
+ 
+""",
+        ])

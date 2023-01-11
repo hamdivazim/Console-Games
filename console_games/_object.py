@@ -28,31 +28,21 @@ class Object:
             self.refresh_rate = refresh_rate
             self.color = color
 
+            self.multicolor_enabled = False
+            self._current_color = 0
+
             self.current_game = None
 
             self.offsetX = 0
             self.offsetY = 0
 
+    def remove(self):
+        self.current_game._remove(self)
+
     def color(self, color):
         """ Changes the color of the object using colorama. """
 
         self.color = color
-
-    def refresh(self):
-        """ Refreshes the screen. """
-
-        if platform.system() == "Windows":
-            cmd("cls")
-        else:
-            cmd("clear")
-
-        sprite = "\n"*self.offsetY
-
-        for line in self.current_sprite.splitlines(True):
-            sprite += "  "*self.offsetX
-            sprite += line
-
-        print(f"{self.color}{sprite}")
 
     def reset(self):
         """ Resets the object. """
@@ -127,3 +117,6 @@ class Object:
                 wait(5/self.refresh_rate)
         
         self.current_game.refresh()
+
+    def toggle_multicolor(self):
+        self.multicolor_enabled = not self.multicolor_enabled
