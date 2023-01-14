@@ -20,6 +20,8 @@ class Game:
         self.children = []
 
         self._colors = [Fore.LIGHTRED_EX, Fore.YELLOW, Fore.LIGHTYELLOW_EX, Fore.GREEN, Fore.BLUE, Fore.MAGENTA]
+
+        self._key_frame = 10
     
     def refresh_rate(self, new_rate):
         self.refresh_rate = new_rate
@@ -43,8 +45,20 @@ class Game:
 
         offsetIndexY = 0
 
+        self._key_frame += 1
+
         for child in sortedChildren:
             sprite = "\n"*(child.offsetY-offsetIndexY)
+
+            if child._is_selector:
+                if keyboard.is_pressed("right") and self._key_frame > 10:
+                    child._selector_index += 1
+                    child._update_selector(child._selector_index)
+                    self._key_frame = 0
+                if keyboard.is_pressed("left") and self._key_frame > 10:
+                    child._selector_index -= 1
+                    child._update_selector(child._selector_index)
+                    self._key_frame = 0
 
             for line in child.current_sprite.splitlines(True):
                 sprite += "  "*child.offsetX
@@ -54,7 +68,10 @@ class Game:
                 print(f"{self._colors[child._current_color % len(self._colors)]}{sprite}")
                 child._current_color += 1
             else:
-                print(f"{child.color}{sprite}")
+                if child._is_selector:
+                    print(f"{sprite}")
+                else:
+                    print(f"{child.color}{sprite}")
 
             offsetIndexY += 1
 
@@ -65,8 +82,19 @@ class Game:
             self.refresh()
             wait(1/self.refresh_rate)
 
+    def wait_for_keypress(self, key="space"):
+        while not keyboard.is_pressed(key):
+            self.refresh()
+            wait(1/self.refresh_rate)
+
     def _remove(self, obj):
         self.children.remove(obj)
         self.refresh()
+
+    def clear_screen(self):
+        """ Removes all child objects from the screen. """
+
+        for child in self.children:
+            self._remove(child)
 
 current_game = Game()

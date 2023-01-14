@@ -8,3 +8,6 @@ class NoCurrentTextProvided(Exception):
 
 class NoSceneProvided(Exception):
     pass
+
+class SelectorsCannotBeEmpty(Exception):
+    pass

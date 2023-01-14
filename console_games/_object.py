@@ -12,7 +12,7 @@ import _exceptions
 import platform
 
 class Object:
-    def __init__(self, color=Fore.LIGHTBLACK_EX, refresh_rate=30, current_sprite=None, current_game=None):
+    def __init__(self, color=Fore.LIGHTBLACK_EX, refresh_rate=30, current_sprite=None, current_game=None, _selector_options=()):
         """ Initialiser """
 
         colorama.init()
@@ -31,7 +31,13 @@ class Object:
             self.multicolor_enabled = False
             self._current_color = 0
 
-            self.current_game = None
+            self._is_selector = False
+            self._selector_index = 0
+            self._selector_options = _selector_options
+            self._select_highlight = Fore.BLUE
+
+            if not current_game == None:
+                self.current_game = current_game
 
             self.offsetX = 0
             self.offsetY = 0
@@ -120,3 +126,18 @@ class Object:
 
     def toggle_multicolor(self):
         self.multicolor_enabled = not self.multicolor_enabled
+
+    def _update_selector(self, index, perform_refresh=False):
+        string = ""
+
+        for i, option in enumerate(self._selector_options):
+            string += "          "
+            if i == (index % len(self._selector_options)):
+                string += f"{self._select_highlight}{option}"
+            else:
+                string += f"{Fore.LIGHTBLACK_EX}{option}"
+
+        self.current_sprite = string
+
+        if perform_refresh:
+            self.current_game.refresh()

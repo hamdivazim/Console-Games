@@ -12,6 +12,7 @@ def test():
     import fancy_text
     import sound
     import figure
+    import selector
 
     game = console_games.Game()
 
@@ -54,6 +55,27 @@ def test():
     figure.current_sprite = figure_sprite
 
     game.delay(3)
+
+    figure.remove()
+
+    title.toggle_multicolor()
+
+    selector = selector.Selector(("GAME 1 ( 100% )", "GAME 2", "GAME 3"), current_game=game)
+
+    selector.offset(y=4)
+
+    game.wait_for_keypress("enter")
+    
+    game.clear_screen()
+    selector.remove()
+
+    header = fancy_text.Text(text=selector.get_current_option())
+
+    game.add_to_children(header)
+
+    header.toggle_multicolor()
+
+    game.delay(2)
 
 if __name__ == "__main__":
     test()
