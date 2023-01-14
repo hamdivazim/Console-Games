@@ -58,3 +58,7 @@ selector.offset(y=4)
 ## When can I use it?
 
 As of now, console_games is _very_ early into development. When it is the _very_ best I can make it, I will release it on PyPi :)
+
+
+## License
+console_games is under the [Apache-2.0 license](https://github.com/hamdivazim/Console-Games/blob/main/LICENSE).
