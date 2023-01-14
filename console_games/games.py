@@ -1,5 +1,4 @@
-import figure
-import fancy_text
+""" Baseclass Game """
 
 from os import system as cmd
 from time import sleep as wait
@@ -96,5 +95,3 @@ class Game:
 
         for child in self.children:
             self._remove(child)
-
-current_game = Game()

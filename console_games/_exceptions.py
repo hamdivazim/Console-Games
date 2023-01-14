@@ -11,3 +11,6 @@ class NoSceneProvided(Exception):
 
 class SelectorsCannotBeEmpty(Exception):
     pass
+
+class FontNotSupported(Exception):
+    pass

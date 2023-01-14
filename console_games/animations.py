@@ -13,6 +13,15 @@ class CustomAnimation:
 
 class FigureAnimations:
     @staticmethod
+    def default_position():
+        return R"""
+ O
+/|\
+ |
+/ \ 
+    """
+
+    @staticmethod
     def wave():
         return CustomAnimation(aniList=[
 R"""

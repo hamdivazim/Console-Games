@@ -1,15 +1,11 @@
 """ Baseclass Object """
 
 from time import sleep as wait
-from os import system as cmd
-from multiprocessing import Process
 
 import colorama
 from colorama import Fore
 
 import _exceptions
-
-import platform
 
 class Object:
     def __init__(self, color=Fore.LIGHTBLACK_EX, refresh_rate=30, current_sprite=None, current_game=None, _selector_options=()):

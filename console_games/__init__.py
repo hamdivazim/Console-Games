@@ -2,8 +2,10 @@
 Console Games
 """
 
-import games as console_games
+import games
 import os
+
+__version__ = "0.03.1-alpha"
 
 def test():
     """ You can run this if you want to test console_games. """
@@ -14,16 +16,14 @@ def test():
     import figure
     import selector
 
-    game = console_games.Game()
-
+    game = games.Game()
     audio = sound.AudioPlayer()
 
     audio.play('test.mp3')
 
     game.delay(2)
 
-    title = fancy_text.Text(text="Super Mario Bros.")
-
+    title = fancy_text.Text(text="Super Mario Bros.", font="shadow")
     game.add_to_children(title)
 
     title.offset(x=1, y=1)
@@ -31,15 +31,8 @@ def test():
 
     game.delay(2)
 
-    figure_sprite = R"""
- O
-/|\
- |
-/ \ 
-    """
-
+    figure_sprite = animations.FigureAnimations.default_position()
     figure = figure.Figure(current_sprite=figure_sprite)
-
     game.add_to_children(figure)
 
     figure.offset(y=4)
@@ -51,7 +44,6 @@ def test():
     game.delay(1)
 
     figure.animate(animation=animations.FigureAnimations.wave(), loops=2)
-
     figure.current_sprite = figure_sprite
 
     game.delay(3)

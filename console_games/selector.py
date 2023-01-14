@@ -8,6 +8,8 @@ from colorama import Fore
 colorama.init()
 
 class Selector:
+    """Base selector object. """
+
     def __init__(self, options=(), current_game=None, highlight_color=Fore.BLUE):
         if options == ():
             raise _exceptions.SelectorsCannotBeEmpty()
