@@ -1,5 +1,5 @@
 # Console-Games
-Welcome to ConsoleGames, a simple Python module to make great console games!
+Welcome to ConsoleGames, a great Python module to make great console games!
 
 ## How does it work?
 
@@ -10,29 +10,49 @@ import console_games
 game = console_games.Game()
 ```
 
-`Game` has a premade instance of `Figure`, an object that can be displayed on the screen. You can make a figure that waves like this:
-```
-import console_games
-from console_games.animations import FigureAnimations
+`Game` is a container for all child objects. As of `0.03`, you can add `figure.Figure`, `fancy_text.Text()` and `selector.Selector()`
 
-game = console_games.Game(FigureAnimations.wave(), loops=n) # You can also loop the animation n times
-
-game.figure.animate()
-```
-
-The `Object` class (from which `Figure` inherits) has these functions:
+The `_object.Object` class (from which all of these inherit) has these functions:
 ```
 game.figure.reset() # Resets the object to its original sprite
-
-game.figure.refresh() # Redraws the object (TODO: fix this function)
-
-game.figure.delay(n) # Pauses the game for n seconds
 
 game.figure.offset(x=3, y=3) # Offsets the object
 
 game.figure.animate_offset(x=3, y=3) # Animates the offset
 
 game.figure.color(Fore.BLUE) # Colors the object in the specified color using colorama
+```
+
+To initialise an object:
+```
+figure = figure.Figure()
+
+game.add_to_children(figure)
+```
+
+## `figure.Figure()`
+`Figure` has the `animate` function, which takes the animation to be executed, amount of loops, and 2 parameters for offset during animation.
+```
+figure.animate(animation=animations.FigureAnimations.run(), loop_offset_x=1)
+```
+
+## `fancy_text.Text()`
+`Text` generates a plain object but using fancy text characters using [`pyfiglet`](https://github.com/pwaller/pyfiglet).
+
+```
+title = fancy_text.Text(text="Super Mario Bros.")
+
+game.add_to_children(title)
+
+title.toggle_multicolor() # Toggles whether the object is multicoloured.
+```
+
+## `selector.Selector()`
+`Selector` is **NOT** an object. It contains a private property `_object` that holds the actual object used in the game. You can, however use `offset()` and `remove()` normally. To get the current selected option, use `get_current_option()`.
+```
+selector = selector.Selector(("GAME 1 ( 100% )", "GAME 2", "GAME 3"), current_game=game)
+
+selector.offset(y=4)
 ```
 
 ## When can I use it?
