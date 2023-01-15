@@ -3,12 +3,12 @@ Console Games
 """
 
 import games
-import os
 
-__version__ = "0.03.1-alpha"
+__version__ = "0.03.2-alpha"
 
 def test():
     """ You can run this if you want to test console_games. """
+    """ Super Mario Bros. in the terminal! """
 
     import animations
     import fancy_text
@@ -23,7 +23,7 @@ def test():
 
     game.delay(2)
 
-    title = fancy_text.Text(text="Super Mario Bros.", font="shadow")
+    title = fancy_text.Text(text="Super Mario Bros.", font="slant")
     game.add_to_children(title)
 
     title.offset(x=1, y=1)
@@ -55,6 +55,10 @@ def test():
     selector = selector.Selector(("GAME 1 ( 100% )", "GAME 2", "GAME 3"), current_game=game)
 
     selector.offset(y=4)
+
+    message = fancy_text.Text(text="Choose a game then press ENTER.", font="simple")
+    game.add_to_children(message)
+    message.offset(x=8, y=6)
 
     game.wait_for_keypress("enter")
     

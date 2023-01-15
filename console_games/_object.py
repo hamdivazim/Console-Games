@@ -39,6 +39,8 @@ class Object:
             self.offsetY = 0
 
     def remove(self):
+        """ Removes the object from the game. """
+
         self.current_game._remove(self)
 
     def color(self, color):
@@ -47,11 +49,13 @@ class Object:
         self.color = color
 
     def reset(self):
-        """ Resets the object. """
+        """ Resets the object to the original sprite. """
 
         self.current_sprite = self._default
 
     def offset(self, x=None, y=None):
+        """ Offsets the object by x and y. """
+
         if x != None:
             self.offsetX = x
         if y != None:
@@ -60,6 +64,8 @@ class Object:
         self.current_game.refresh()
 
     def animate_offset(self, x=None, y=None):
+        """ Animates the offset of the object by x and y. """
+
         if x == None:
             x = 0
         if y == None:
@@ -121,9 +127,13 @@ class Object:
         self.current_game.refresh()
 
     def toggle_multicolor(self):
+        """ Toggles multicolor in the object. """
+
         self.multicolor_enabled = not self.multicolor_enabled
 
     def _update_selector(self, index, perform_refresh=False):
+        """ Updates the selector's sprite based the the current chosen option. """
+
         string = ""
 
         for i, option in enumerate(self._selector_options):

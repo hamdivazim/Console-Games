@@ -43,6 +43,8 @@ class Selector:
                 self._selected = 0
 
     def offset(self, x=0, y=0):
+        """ Offsets the selector. """
+
         if x != 0:
             self._ofsX = x
         if y != 0:
@@ -53,7 +55,11 @@ class Selector:
         self.current_game.refresh()
 
     def remove(self):
+        """ Removes the selector. """
+
         self.current_game._remove(self._object)
 
     def get_current_option(self):
+        """ Returns the current selected option. """
+
         return self.options[self._object._selector_index % len(self.options)]

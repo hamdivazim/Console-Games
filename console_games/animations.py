@@ -1,4 +1,4 @@
-""" Premade animations """
+""" Premade animations. """
 import _exceptions
 
 # Custom Animation Class

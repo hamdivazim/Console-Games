@@ -22,16 +22,22 @@ class Game:
 
         self._key_frame = 10
     
-    def refresh_rate(self, new_rate):
+    def change_refresh_rate(self, new_rate):
+        """ Changes the game's refresh rate. """
+
         self.refresh_rate = new_rate
         for child in self.children:
             child.refresh_rate = new_rate
 
     def add_to_children(self, object):
+        """ Adds the given object to the game's children. """
+
         self.children.append(object)
         object.current_game = self
 
     def __add__(self, object):
+        """ Adds the given object to the game's children. """
+
         self.children.append(object)
         object.current_game = self
 
@@ -74,19 +80,27 @@ class Game:
 
             offsetIndexY += 1
 
+    def tick(self):
+        """ Updates the game. """
+
+        self.refresh()
+        wait(1/self.refresh_rate)
+
     def delay(self, seconds):
         """ Delays the game. """
 
         for i in range(self.refresh_rate*seconds):
-            self.refresh()
-            wait(1/self.refresh_rate)
+            self.tick()
 
     def wait_for_keypress(self, key="space"):
+        """ Delays until the given key is pressed. """
+
         while not keyboard.is_pressed(key):
-            self.refresh()
-            wait(1/self.refresh_rate)
+            self.tick()
 
     def _remove(self, obj):
+        """ Removes the given object from the game. """
+
         self.children.remove(obj)
         self.refresh()
 
